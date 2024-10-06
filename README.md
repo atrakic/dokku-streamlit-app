@@ -1,51 +1,49 @@
-# azure-dokku-template
+# Dokku Streamlit App
 
-> Use this template to deploy your container of choice to Azure Cloud with [DokKu](https://dokku.com/docs/deployment/application-deployment/).
+This repository contains a Streamlit application deployed using Dokku.
 
-[![last commit](https://img.shields.io/github/last-commit/atrakic/azure-dokku-template)](https://github.com/atrakic/azure-dokku-template/commits/)
-![License](https://img.shields.io/github/license/atrakic/azure-dokku-template)
+## Prerequisites
 
+- Dokku installed on your server
+- A domain name pointed to your server
+- Streamlit installed in your project
 
-## Getting started
+## Installation
 
-### Prerequisites
-- [Azure account](https://azure.microsoft.com/en-us/free/)
-- [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
+1. Clone the repository:
 
-### Local deployment
+    ```sh
+    git clone https://github.com/atrakic/dokku-streamlit-app.git
+    cd dokku-streamlit-app
+    ```
 
-1. Use this repository as your GitOps template
+2. Create a new Dokku app:
 
-Create a GitHub repository based on this starter template (see the green "Use this template" button).
+    ```sh
+    dokku apps:create streamlit-app
+    ```
 
+3. Set up the domain for your app:
 
-2. Clone your repo
-   ```sh
-   git clone https://github.com/your-account/your-repo.git
-   ```
+    ```sh
+    dokku domains:add streamlit-app yourdomain.com
+    ```
 
-3. Edit the `Dockerfile` and `Makefile` and `infra` to match your app
+4. Deploy the app:
 
+    ```sh
+    git remote add dokku dokku@yourserver.com:streamlit-app
+    git push dokku main
+    ```
 
-4. Create infrastructure on Azure Cloud
-   ```make infra ```
+## Usage
 
+After deployment, your Streamlit app will be accessible at `http://yourdomain.com`.
 
-5. Deploy the app to Dokku
-   ```make ```
+## Contributing
 
-6. Access your app
+Contributions are welcome! Please open an issue or submit a pull request.
 
-### GitHub Actions deployment
+## License
 
-1. Create a new secret in your new repo with the name `SSH_PRIVATE_KEY` and add the value of your private SSH key. This key will be used to authenticate with the Dokku server.
-2. Create new branch with your changes and create PR to trigger the GitHub Actions workflows.
-
-
-## Example deployment
-
-- https://github.com/atrakic/dokku-clicks
-
-
-## License Information
-This project is licensed under the MIT License. View the [LICENSE](LICENSE) file for more details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
