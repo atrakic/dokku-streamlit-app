@@ -66,7 +66,14 @@ if st.button("Load Repositories from Database"):
     df = load_from_sqlite()
     st.write(df)
     st.write(df.describe())
+    st.subheader("Repository Name Counts")
     st.write(df["name"].value_counts())
+
+    st.subheader("Stargazers Count Bar Chart")
     st.bar_chart(df["stargazers_count"])
+
+    st.subheader("Forks Count Line Chart")
     st.line_chart(df["forks_count"])
+
+    st.subheader("Watchers Count Area Chart")
     st.area_chart(df["watchers_count"])
