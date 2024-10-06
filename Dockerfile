@@ -29,6 +29,4 @@ HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
     "import http.client; http.client.HTTPConnection('localhost', 8501).request('GET', '/_stcore/health');"]
 
 EXPOSE 8501
-#HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health
-#CMD ["streamlit", "run", "app.py"]
 ENTRYPOINT ["/venv/bin/streamlit", "run", "app.py"]

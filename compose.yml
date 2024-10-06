@@ -3,5 +3,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: app
     ports:
       - 8501:8501
