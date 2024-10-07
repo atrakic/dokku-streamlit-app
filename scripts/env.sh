@@ -1,7 +1,7 @@
 # Description: Environment variables for the scripts
-myapp=${1:-myapp}
-your_cert_email=""  # your email address for letsencrypt
-s3_backup_bucket="" # AWS s3 bucket for backups
+myapp=${myapp:-myapp} # name of the app
+your_cert_email="${your_cert_email:-}"  # your email address for letsencrypt
+s3_backup_bucket="${s3_backup_bucket:-}" # AWS s3 bucket for backups
 
 fqdn=$(make -s -f ./infra/Makefile outputs | jq ".[].fqdn.value" | xargs)
 ip=$(make -s -f ./infra/Makefile outputs | jq ".[].vmPublicIPAddress.value"| xargs)

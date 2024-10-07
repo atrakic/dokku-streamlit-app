@@ -4,6 +4,8 @@ BASEDIR=$(shell git rev-parse --show-toplevel)
 
 .PHONY: all infra clean restore update backup test deploy
 
+export $(shell sed 's/=.*//' $(BASEDIR)/.env)
+
 all:
 	$(BASEDIR)/scripts/configure.sh
 	$(BASEDIR)/scripts/deploy.sh
@@ -17,3 +19,5 @@ restore update backup test deploy:
 clean:
 	$(BASEDIR)/scripts/clean.sh
 	pushd $(BASEDIR)/infra; make clean; popd
+
+-include $(BASEDIR)/.env
