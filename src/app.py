@@ -1,8 +1,10 @@
 import sqlite3
 import streamlit as st
 import pandas as pd
+
 # import numpy as np
 import requests
+import matplotlib.pyplot as plt
 
 DB_FILE = "/var/db/github_repos.db"
 
@@ -48,8 +50,21 @@ def load_from_sqlite(db_name=DB_FILE):
     return df
 
 
+def pie_chart_plot(df):
+    fig1, ax1 = plt.subplots()
+    ax1.pie(
+        df["language"].value_counts(),
+        labels=df["language"].value_counts().index,
+        autopct="%1.1f%%",
+    )
+    plt.title("Language Chart")
+    return fig1
+
+
 def main():
     st.title("GitHub Repositories Status")
+    st.write("This app fetches and displays GitHub repositories data")
+
     username = st.text_input("Enter GitHub username")
 
     if st.button("Fetch and Load Repositories"):
@@ -60,17 +75,9 @@ def main():
             df = load_from_sqlite()
             st.write(df)
             st.write(df.describe())
-            st.subheader("Repository Name Counts")
-            st.write(df["name"].value_counts())
 
-            st.subheader("Stargazers Count Bar Chart")
-            st.bar_chart(df["stargazers_count"])
-
-            st.subheader("Forks Count Line Chart")
-            st.line_chart(df["forks_count"])
-
-            st.subheader("Watchers Count Area Chart")
-            st.area_chart(df["watchers_count"])
+            st.subheader("Language Chart")
+            st.pyplot(pie_chart_plot(df))
 
 
 if __name__ == "__main__":
