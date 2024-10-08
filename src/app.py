@@ -1,7 +1,6 @@
 import sqlite3
 import streamlit as st
 import pandas as pd
-
 # import numpy as np
 import requests
 
@@ -13,6 +12,7 @@ def fetch_github_repos(username):
     response = requests.get(url, timeout=10)
     if response.status_code == 200:
         return response.json()
+    return None
 
 
 def flatten_repo_data(repo):
