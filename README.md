@@ -1,14 +1,15 @@
-# Dokku Streamlit App
+# github-leaderboard-app
 
-This repository contains a Streamlit application deployed using Dokku.
+A tiny github leaderboard using [streamlit](https://streamlit.io). Includes a deployment workflow using Dokku.
 
 ## Prerequisites
 
-- Dokku installed on your server
+- Python environment
+- Docker
+- Dokku server
 - A domain name pointed to your server
-- Streamlit installed in your project
 
-## Installation
+## Deployment
 
 1. Clone the repository:
 
@@ -17,19 +18,19 @@ This repository contains a Streamlit application deployed using Dokku.
     cd dokku-streamlit-app
     ```
 
-2. Create a new Dokku app:
+2. Create a new Dokku app (on dokku server):
 
     ```sh
     dokku apps:create streamlit-app
     ```
 
-3. Set up the domain for your app:
+3. Set up the domain for your app (on dokku server):
 
     ```sh
     dokku domains:add streamlit-app yourdomain.com
     ```
 
-4. Deploy the app:
+4. Deploy the app (from your repo):
 
     ```sh
     git remote add dokku dokku@yourserver.com:streamlit-app
